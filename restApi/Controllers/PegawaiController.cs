@@ -9,7 +9,7 @@ namespace restApi.Controllers
 
     [ApiController]
     [Route("api")]
-    public class PegawaiController(IPegawaiService pegawaiService) : ControllerBase
+    public class PegawaiController(PegawaiService pegawaiService) : ControllerBase
     {
         
 
@@ -25,6 +25,13 @@ namespace restApi.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var data = await pegawaiService.GetPegawaiCari(id);
+            return Ok(data);
+        }
+
+        [HttpPost("pegawai/cari")]
+        public async Task<IActionResult> Get(PegawaiRequest request)
+        {
+            var data = await pegawaiService.GetPegawaiCari2(request);
             return Ok(data);
         }
 
